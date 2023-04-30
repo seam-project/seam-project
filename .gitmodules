@@ -1,3 +1,9 @@
 [submodule "unitime"]
 	path = unitime
 	url = git@github.com:seam-project/unitime.git
+[submodule "unitime-docker"]
+	path = unitime-docker
+	url = git@github.com:seam-project/unitime-docker.git
+[submodule "sonarqube-compose"]
+	path = sonarqube-compose
+	url = git@github.com:seam-project/sonarqube-compose.git
