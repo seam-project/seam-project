@@ -7,6 +7,10 @@
 - Omar Adel Abdel Hamid Ahmed Brikaa - 20206043
 - Ali Esmat Ahmed Orfy - 20206123
 
+## GitHub repository
+
+https://github.com/seam-project/seam-project
+
 ## Cloning the repo
 
 This repo consists of multiple git submodules.
