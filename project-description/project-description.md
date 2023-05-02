@@ -8,6 +8,17 @@
 - It can also have students that are taking different combination of courses.
 - Therefore, an intelligent solution is required so as to optimize the usage of halls and period times.
 
+### Course Timetabling
+
+- Builds a Course schedule that doesn't create any conflicts to the students attending the course.
+- Simulates a variety of situations like fewer classrooms or changes in course class requirements.
+
+### Course Management
+
+- Manages timetable modifications. It can search for alternatives that have a minimal impact on the current timetable, and communicate these changes to affected students and other systems.
+- Each alternative produced by the solver provides information on any additional student conflicts created and any other preferences that may be violated.
+- Additional search constraints can be added to the solver ex: changes can be customized to allow room-only, time-only swaps, or both.
+
 ### Event Management
 
 - A university can host more then just classes and lectures like Guest speakers, club meetings study sessions.
@@ -19,13 +30,14 @@
 - Builds a complete exam schedule.
 - Minimizes number of conflicting exam placements for students.
 - Limits the number of exams per day for students.
-- Creates schedules for midterm and final exams
+- Creates schedules for midterm and final exams.
 
 ### Student Scheduling
 
-- The student scheduling process matches the sets of classes required by each student to the available class spaces so that as many as possible of the students' educational requirements are met.
-- UniTime can be used to construct a demand-based timetable and optimize the number of students who receive the needed courses.
-- UniTime is able to determine the expected need for individual course sections through prior knowledge and information.
+- UniTime supports 2 kinds of student scheduling.
+- Batch Scheduling: UniTime automatically enrolls pre-registered students to their suitable classes.
+- Online Scheduling: UniTime supports immediate real-time requests to change or apply to classes.
+- UniTime's automatic enrollment is optimized respecting student preferences and course structure.
 
 ## Techniques used to obtain information
 
