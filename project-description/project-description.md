@@ -27,12 +27,6 @@
 - UniTime can be used to construct a demand-based timetable and optimize the number of students who receive the needed courses.
 - UniTime is able to determine the expected need for individual course sections through prior knowledge and information.
 
-
-try to be consistent with the wording that I used above just to the point things we 5alas
-all of this is the point lol
-i can't do any less waw
-
-
 ## Techniques used to obtain information
 
 We represent our understanding of the project using the integrated metamodel[^integrated-metamodel]
