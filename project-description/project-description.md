@@ -49,9 +49,12 @@ namely, the Integrated Metamodel for Program Comprehension[^integrated-metamodel
 
 - Establish a partial top-down model by reading the [help manuals](https://www.unitime.org/) of UniTime
 - Read the [provided documentation on the course timetabling component](https://www.unitime.org/uct_courses.php)
-- Read the [Course timetabling manual](https://docs.google.com/document/d/1NZmKnmrjM2Tqg7dO18cWcMIe_GrtilQtKw6d1WGWBtY)
+- Read the [course timetabling manual](https://docs.google.com/document/d/1NZmKnmrjM2Tqg7dO18cWcMIe_GrtilQtKw6d1WGWBtY)
 - Log in with an admin account, and test Courses > Course Timetabling > Timetable Grid
 - Log in with a manager account, and test Courses > Course Timetabling > Solver
+- Read the [scheduling assistant manual](https://docs.google.com/document/d/1QTCKwLhU62yGtr6XlW_XM68q3hgohxLpwWXdyajr30g)
+- Log in with a student account, and test Scheduling Assistant
+
 
 ### Situational model
 
