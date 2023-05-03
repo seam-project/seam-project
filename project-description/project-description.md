@@ -41,21 +41,46 @@
 ## Techniques used to obtain information
 
 We take an opportunistic approach (combinations of top-down and bottom-up approaches) to program comprehension,
-namely, the Integrated Metamodel[^integrated-metamodel] for Program Comprehension.
+namely, the Integrated Metamodel for Program Comprehension[^integrated-metamodel].
 
 ![The integrated metamodel for program comprehension](./integrated-metamodel.png)
 
-### Timetabling
+### Top down model
 
-- Establish a partial top-down model for the timetabling UniTime component using the
-  [provided documentation on the component](https://www.unitime.org/uct_courses.php).
+- Establish a partial top-down model by reading the [help manuals](https://www.unitime.org/) of UniTime
+- Read the [provided documentation on the course timetabling component](https://www.unitime.org/uct_courses.php)
+- Read the [Course timetabling manual](https://docs.google.com/document/d/1NZmKnmrjM2Tqg7dO18cWcMIe_GrtilQtKw6d1WGWBtY)
+- Log in with an admin account, and test Courses > Course Timetabling > Timetable Grid
+- Log in with a manager account, and test Courses > Course Timetabling > Solver
 
-- Refine the top-down model by running the application locally:
+### Situational model
 
-- Log in with an admin account, and test Courses > Course Timetabling > Timetable Grid.
+- Establish the situational model by cloning the source code repo, examining the directory and packages structure,
+  building it, and running it locally
+- Examine `JavaSource/org/unitime/timetable/server/solver/SolverPageBackend.java` to get an idea of how the solver
+  is called in the back-end
+- Examine `JavaSource/org/unitime/timetable/server/solver/TimetableGridBackend.java` to get an idea of how the timetable
+  grid is created in the back-end
 
-- Log in with a manager account, and test Courses > Course Timetabling > Solver.
+### Program model
+
+- One way to determine where a feature is implemented is by
+  hypothesizing how it is implemented and what syntactical keywords and beacons[^beacons] might exist in the code.
+- Then searching the code for these beacons to reach the target component.
+- From the target component, cross-referencing can be done to check what other components are called by that component.
+- For example, in order to find the back-end code that calls the solver,
+  we search the code for the word "load" which exists in the solver page.
+- We then find out that `JavaSource/org/unitime/timetable/gwt/client/solver/SolverPage.java` is responsible for adding
+  the load button in the solver page (vague but helpful understanding).
+- We find out that this page uses an enum called `SolverOperation`.
+- We hypothesize that this enum will also be used by the back-end to determine what solver operation should be done.
+- So we use cross-referencing to find out all of the components that use this enum
+- And we end up at `JavaSource/org/unitime/timetable/server/solver/SolverPageBackend.java`
+- We also learn that solver back-end code will most likely be `org.unitime.timetable.server.solver` which is helpful
+  for further refining the situational model.
 
 [^integrated-metamodel]:
     Mayrhauser, Anneliese & Vans, A. Marie. (1995).
     Program comprehension during software maintenance and evolution. Computer. 28. 44 - 55. 10.1109/2.402076.
+
+[^beacons]: Beacons are discussed in the integrated metamodel paper[^integrated-metamodel]
