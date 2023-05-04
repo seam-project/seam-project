@@ -54,7 +54,7 @@ namely, the Integrated Metamodel for Program Comprehension[^integrated-metamodel
 - Log in with a manager account, and test Courses > Course Timetabling > Solver
 - Read the [scheduling assistant manual](https://docs.google.com/document/d/1QTCKwLhU62yGtr6XlW_XM68q3hgohxLpwWXdyajr30g)
 - Log in with a student account, and test Scheduling Assistant
-
+- And so on...
 
 ### Situational model
 
@@ -64,6 +64,7 @@ namely, the Integrated Metamodel for Program Comprehension[^integrated-metamodel
   is called in the back-end
 - Examine `JavaSource/org/unitime/timetable/server/solver/TimetableGridBackend.java` to get an idea of how the timetable
   grid is created in the back-end
+- And so on...
 
 ### Program model
 
@@ -81,6 +82,7 @@ namely, the Integrated Metamodel for Program Comprehension[^integrated-metamodel
 - And we end up at `JavaSource/org/unitime/timetable/server/solver/SolverPageBackend.java`
 - We also learn that solver back-end code will most likely be `org.unitime.timetable.server.solver` which is helpful
   for further refining the situational model.
+- And so on...
 
 [^integrated-metamodel]:
     Mayrhauser, Anneliese & Vans, A. Marie. (1995).
