@@ -26,7 +26,7 @@ Check the [sonarqube-reports](./sonarqube-reports/) directory.
 The PDF files are a general overview of the code and the JSON files are the first 10000 code quality issues
 (20 JSON files x 500 issues each).
 
-## Viewing the project descrption
+## Viewing the project description
 
 Check the [project-description](./project-description/) directory.
 
