@@ -1,0 +1,13 @@
+- Allow admins to list all students and view a certain student with his/her scheduling information
+    - A view that shows a searchable paginated list of students
+    - Clicking on a student from this list, will show the schedule of that student
+- Allow an admin to log in as any user without their password. This helps in troubleshooting.
+    - A view that allows an admin to search for a user by their username
+    - Searching for a username brings up a list of users whose usernames contain the search query
+    - Clicking on a user will let an admin log in as that user
+- Follow the maven packages structure.
+    This reduces the complexity of integrating maven plugins and improves IDE support.
+    - Put the main code in /src/main/java
+    - Put the resources in /src/main/resources
+    - Read build number and date in JavaSource/org/unitime/timetable/util/Constants.java from a file
+    instead of using maven filtering and ant replace token
