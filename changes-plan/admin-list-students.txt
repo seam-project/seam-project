@@ -1,0 +1,23 @@
+- Learn how a similar feature is done
+    - Admin viewing instructors
+        - To learn how an admin can view stuff
+    - Student viewing his own schedule
+        - To learn how a student can view his scheduling information
+
+- Admin viewing instructors
+    - JavaSource/menu.xml - line 62 - for initial view
+    - WebContent/user/instructorSearch.jsp - for different actions
+    - JavaSource/org/unitime/timetable/action/InstructorSearchAction.java - line 103 (back-end entry point)
+    - JavaSource/org/unitime/timetable/webutil/InstructorListBuilder.java - line 76
+    - JavaSource/org/unitime/timetable/model/DepartmentalInstructor.java - line 303
+
+- To do admin view students
+    - Add list option to menu.xml
+    - Create WebContent/user/studentSearch.jsp
+        - This is the view (maybe skip till the end and print in terminal on accessing the page?)
+    - Create JavaSource/org/unitime/timetable/action/StudentSearchAction.java
+        - Contains studentSearch.tiles
+        - showSearch, showList results rendering studentSearch.tiles
+    - Create JavaSource/org/unitime/timetable/webutil/StudentListBuilder.java
+        - Return plain text instead of table HTML initially
+    - JavaSource/org/unitime/timetable/model/Student.java might need findForSession()?
