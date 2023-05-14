@@ -24,8 +24,6 @@
 - Learning student viewing scheduling information
     - subject abbreviation: Student.StudentClassEnrollment.CourseOffering
     - course number: Student.StudentClassEnrollment.CourseOffering
-    - days: Student.StudentClassEnrollments.Class_.CommittedAssignment.Days
-    - start/end: ?
 
 Alternatively, use JavaSource/org/unitime/timetable/gwt/services/SectioningServiceAsync.java listClasses()
 to obtain the data
@@ -39,3 +37,7 @@ Two decisions for showing student scheduling info on clicking
     - Either to create a new action and JSP and get the scheduling info from the database
     - Or create a new GWT page and use SectioningService to get the scheduling info
     JavaSource/org/unitime/timetable/gwt/client/sectioning/StudentSectioningWidget.java line 160
+
+Implementing admin view student details
+    - Create WebContent/user/studentDetail.jsp
+    - Create JavaSource/org/unitime/timetable/action/StudentDetailAction.java
