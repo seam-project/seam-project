@@ -1,7 +1,16 @@
 @startuml
+package org.unitime.timetable.form {
+interface UniTimeForm
+class BlankForm implements UniTimeForm
+}
+
 package org.unitime.timetable.action {
 
-class InstructorSearchAction {
+abstract class "UniTimeAction<BlankForm>" extends "UniTimeAction<T>"
+
+"UniTimeAction<BlankForm>" --> BlankForm
+
+class InstructorSearchAction extends "UniTimeAction<BlankForm>" {
 	- final static long serialVersionUID
 	# final static CourseMessages MSG
 	- String iDeptId
@@ -15,6 +24,8 @@ class InstructorSearchAction {
 
 	+ String execute()
 }
+
+
 }
 
 package org.unitime.timetable.webutil {
@@ -114,5 +125,4 @@ class DepartmentalInstructor {
 
 InstructorSearchAction --> InstructorListBuilder
 InstructorListBuilder --> DepartmentalInstructor
-
 @enduml
