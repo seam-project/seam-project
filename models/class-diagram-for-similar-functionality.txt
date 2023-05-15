@@ -1,0 +1,118 @@
+@startuml
+package org.unitime.timetable.action {
+
+class InstructorSearchAction {
+	- final static long serialVersionUID
+	# final static CourseMessages MSG
+	- String iDeptId
+	- boolean iHasSurveys
+        - Set<Department> setupManagerDepartments()
+	+ String getDeptId()
+	+ void setDeptId(String deptId)
+
+	+ boolean getHasSurveys()
+	+ void setHasSurveys(boolean hasSurveys)
+
+	+ String execute()
+}
+}
+
+package org.unitime.timetable.webutil {
+class InstructorListBuilder {
+    # final static CourseMessages MSG
+    + String htmlTableForInstructor(SessionContext context, String deptId, int order, String backId)
+    + PdfWebTable pdfTableForInstructor(SessionContext context, String deptId, boolean canHaveImages)
+}
+}
+
+package org.unitime.timetable.model {
+class DepartmentalInstructor {
+- static final long serialVersionUID
+- String nameInitLast()
+- String nameLastFirst()
+- String nameLastFirstMiddle()
+- static final long serialVersionUID
+- Date iDate
+# static GwtConstants CONS
++ DepartmentalInstructor ()
++ DepartmentalInstructor (java.lang.Long uniqueId)
++ static String INSTR_LIST_ATTR_NAME
++ static String INSTR_HAS_PREF_ATTR_NAME
++ static String INSTRDEPT_LIST_ATTR_NAME
++ static final String sNameFormatLastFist
++ static final String sNameFormatFirstLast
++ static final String sNameFormatInitialLast
++ static final String sNameFormatLastInitial
++ static final String sNameFormatFirstMiddleLast
++ static final String sNameFormatLastFirstMiddle
++ static final String sNameFormatShort
++ String nameLastNameFirst()
++ String nameFirstNameFirst()
++ String nameShort()
++ String getNameFirst()
++ String getNameLast()
++ String getNameLastFirst()
++ String getNameInitLast()
++ String nameFirstLast()
++ String getName(String instructorNameFormat)
++ boolean hasLastName()
++ boolean hasFirstName()
++ boolean hasMiddleName()
++ void removeClassInstructor(ClassInstructor classInstr)
++ String htmlLabel()
++ Set<Location> getAvailableRooms()
++ Set<Building> getAvailableBuildings()
++ Set<RoomFeature> getAvailableRoomFeatures()
++ Set<RoomGroup> getAvailableRoomGroups()
++ Set prefsOfTypeForDepartment(Class type, Department dept)
++ static List<DepartmentalInstructor> getAllForInstructor(DepartmentalInstructor di, Long sessionId)
++ static List<DepartmentalInstructor> getAllForInstructor(DepartmentalInstructor di)
++ static List<DepartmentalInstructor> findInstructorsForDepartment(Long departmentId)
++ static List<DepartmentalInstructor> findInstructorsForSession(Long sessionId)
++ int compareTo(Object o)
++ static boolean existInst(String puid)
++ static DepartmentalInstructor findByPuidDepartmentId(String puid, Long deptId)
++ static DepartmentalInstructor findByPuidDepartmentId(String puid, Long deptId, org.hibernate.Session hibSession)
++ DepartmentalInstructor findThisInstructorInSession(Long sessionId)
++ DepartmentalInstructor findThisInstructorInSession(Long sessionId, org.hibernate.Session hibSession)
++ DepartmentalInstructor getNextDepartmentalInstructor(SessionContext context, Right right)
++ DepartmentalInstructor getPreviousDepartmentalInstructor(SessionContext context, Right right)
++ String toString()
++ boolean hasPreferences()
++ Object clone()
++ static List findAllExamInstructors(Long sessionId, Long examTypeId)
++ List<Exam> getExams(Integer examType)
++ List<Exam> getExams(ExamType examType)
++ List<Exam> getAllExams()
++ Collection<Assignment> getCommitedAssignments()
++ Session getSession()
++ static boolean canLookupInstructor()
++ static UserInfo lookupInstructor(String externalId)
++ Set<InstructorAttribute> getAttributes(InstructorAttributeType type)
++ Set<CourseOffering> getAvailableCourses()
++ Set getAvailableAttributeTypes()
++ Set getAvailableAttributes()
++ boolean hasUnavailabilities()
++ boolean isUnavailable(int day, int month)
++ List<TimeBlock> listUnavailableDays()
++ List<TimeLocation> listUnavailableTimes()
++ BitSet getUnavailableBitSet(int targetDow)
++ static List<DepartmentalInstructor> getUserInstructors(UserContext user)
++ int getUnavailablePatternOffset()
++ String getUnavailablePatternArray()
++ String getUnavailableBorderArray()
++ String getUnavailablePatternHtml()
++ String getUnavailablePatternHtml(boolean editable)
++ String getUnavailablePatternHtml(boolean editable, boolean includeScript)
++ void setUnavailablePatternAndOffset(HttpServletRequest request)
++ Date getUnavailableStartDate()
++ Date getUnavailableEndDate()
++ Map<Date, Date> getUnavailablePatternDateStringHashMaps()
++ String getUnavailableDaysText(String separator)
+}
+}
+
+InstructorSearchAction --> InstructorListBuilder
+InstructorListBuilder --> DepartmentalInstructor
+
+@enduml
