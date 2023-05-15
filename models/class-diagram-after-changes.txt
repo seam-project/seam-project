@@ -1,0 +1,156 @@
+@startuml
+
+skinparam nodesep 20
+skinparam linetype ortho
+skinparam ranksep 150
+left to right direction
+skinparam style strictuml
+skinparam style DefaultFontName Arial
+skinparam DefaultFontSize 16
+skinparam DefaultFontStyle bold
+skinparam ArrowThickness 2.2
+skinparam ArrowColor #grey
+hide empty members
+
+
+package org.unitime.timetable.form {
+ interface UniTimeForm
+ class BlankForm implements UniTimeForm
+}
+
+package org.unitime.timetable.action {
+ abstract class "UniTimeAction<BlankForm>" extends "UniTimeAction<T>"
+ "UniTimeAction<BlankForm>" --> BlankForm
+
+class StudentDetailAction extends "UniTimeAction<BlankForm>" {
+        - final static long serialVersionUID
+        + String execute()
+}
+
+class StudentSearchAction extends "UniTimeAction<BlankForm>"{
+ - final static long serialVersionUID
+ # final static CourseMessages MSG
+ + String execute()
+}
+
+
+package org.unitime.timetable.webutil {
+class StudentListBuilder {
+    + String nullableToString(String s)
+    + String htmlTableForStudent(SessionContext context)
+}
+class SimpleStudentClassListBuilder{
+   + String getList(SessionContext context, String studentId)
+  }
+}
+
+package org.unitime.timetable.model {
+
+
+class StudentClassEnrollment extends BaseStudentClassEnrollment {
+    -final static long serialVersionUID
+    +StudentClassEnrollment(Long uniqueId)
+    +static Enum SystemChange
+    +static List findAll(Long sessionId)
+    +static Iterator findAllForStudent(Long studentId)
+    +static boolean sessionHasEnrollments(Long sessionId)
+}
+
+
+
+
+class CourseOffering extends BaseCourseOffering {
+
+    - static final long serialVersionUID = 1L;
+    + static final String CRS_OFFERING_LIST_ATTR_NAME = "crsOfferingList";
+    
+    + CourseOffering () 
+    + CourseOffering (java.lang.Long uniqueId) 
+    + String getCourseName() 
+    + String getCourseNameWithTitle() 
+    + String getCourseNumberWithTitle()
+    + String toString() 
+    + Boolean getIsControl() 
+    + static CourseOffering findBySessionSubjAreaIdCourseNbr(Long acadSessionId, Long subjAreaId, String courseNbr) 
+    + static CourseOffering findBySessionSubjAreaAbbvCourseNbr(Long acadSessionId, String subjAreaAbbv, String courseNbr) 
+    + static CourseOffering findBySessionSubjAreaAbbvCourseNbrTitle(Long acadSessionId, String subjAreaAbbv, String courseNbr, String title) 
+    + static synchronized CourseOffering addNew(Long subjAreaId, String courseNbr) throws Exception 
+    + static Vector getControllingCourses(Long sessionId) 
+    + Department getDepartment() 
+    + Department getManagingDept() 
+    + List getCourseOfferingDemands() 
+    + List getLastLikeSemesterCourseOfferingDemands() 
+    + Object clone() 
+    + static List findAll(Long sessionId) 
+    + static CourseOffering findBySubjectAreaCourseNbr(Long sessionId, String subjectAreaAbbv, String courseNbr) 
+    + static CourseOffering findByExternalId(Long sessionId, String externalId) 
+    + static CourseOffering findByUniqueId(Long uniqueId) 
+    + static CourseOffering findBySubjectCourseNbrInstrOffUniqueId( String subjectAreaAbbv, String courseNbr, Long instrOffrUniqueId) 
+    + static CourseOffering findByName(String name, Long sessionId) 
+    + static CourseOffering findByIdRolledForwardFrom(Long sessionId, Long uniqueIdRolledForwardFrom) 
+    + int compareTo(Object o) 
+    + CourseCreditUnitConfig getCredit()
+    + void setCredit(CourseCreditUnitConfig courseCreditUnitConfig)
+    + boolean isAllowStudentScheduling() 
+    + List<StudentClassEnrollment> getClassEnrollments(Student s) 
+    + Set<OverrideType> getEnabledOverrides() 
+    + Department getEffectiveFundingDept() 
+
+}
+
+class Student {
+- final static long serialVersionUID
++ Student () 
++ Student (java.lang.Long uniqueId) 
++ static List findAll(Long sessionId) 
++ static Student findByExternalId(Long sessionId, String externalId) 
++ static Student findByExternalIdBringBackEnrollments(org.hibernate.Session hibSession, Long sessionId, String externalId)
++ void removeAllEnrollments(org.hibernate.Session hibSession)
++ Set<Exam> getExams(Integer examType) 
++ Set<Exam> getExams(ExamType examType) 
++ String getName(String instructorNameFormat) 
++ int compareTo(Student student) 
++ static Hashtable<Long,Set<Long>> findConflictingStudents(Long classId, int startSlot, int length, List<Date> dates) 
++ boolean hasSectioningStatusOption(StudentSectioningStatus.Option option) 
++ String getAcademicTitle() 
++ Serializable getQualifierId()
++ String getQualifierType() 
++ String getQualifierReference() 
++ String getQualifierLabel() 
++ CourseRequestOverrideStatus getMaxCreditOverrideStatus() 
++ void setMaxCreditOverrideStatus(CourseRequestOverrideStatus status)
++ boolean isRequestApproved() 
++ boolean isRequestPending() 
++ boolean isRequestCancelled() 
++ boolean isRequestRejected() 
++ StudentSectioningStatus getEffectiveStatus() 
++ WaitListMode getWaitListMode() 
++ Date getLastChangedByStudent() 
++ boolean hasReleasedPin() 
++ String getReleasedPin() 
++ Set<Long> getAdvisorWaitListedCourseIds(boolean useWaitLists, boolean useNoSubs) 
++ Set<Long> getAdvisorWaitListedCourseIds(OnlineSectioningServer server) 
++ void setMaxCreditOverrideIntent(CourseRequestOverrideIntent intent)
++ CourseRequestOverrideIntent getMaxCreditOverrideIntent() 
++ StudentAreaClassificationMajor getPrimaryAreaClasfMajor() 
++ CourseRequest getCourseRequest(CourseOffering co) 
++ boolean isEnrolled(CourseOffering co) 
++ WaitList addWaitList(CourseOffering co, WaitList.WaitListType type, boolean waitListed, String changedBy, Date timeStamp, org.hibernate.Session hibSession)
++ void resetWaitLists(WaitList.WaitListType type, String changedBy, Date timeStamp, org.hibernate.Session hibSession) 
++ ClassModality getPreferredClassModality() 
++ void setPreferredClassModality(ClassModality modality) 
++ ModalityPreference getModalityPreference() 
++ ScheduleGaps getPreferredScheduleGaps() 
++ void setPreferredScheduleGaps(ScheduleGaps gaps) 
++ BackToBackPreference getBackToBackPreference() }
+
+
+}
+
+SimpleStudentClassListBuilder --> StudentClassEnrollment
+SimpleStudentClassListBuilder --> Student
+SimpleStudentClassListBuilder --> CourseOffering
+StudentDetailAction --> SimpleStudentClassListBuilder
+StudentSearchAction --> StudentListBuilder
+StudentListBuilder --> Student
+@enduml
